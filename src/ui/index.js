@@ -3,7 +3,11 @@ import addOnUISdk from "https://new.express.adobe.com/static/add-on-sdk/sdk.js";
 function add_image(url) {
     addOnUISdk.ready.then(() => {
         async function callWhenReady() {
-            const blob = await fetch(url).then((r) => r.blob());
+            const blob = await fetch(url)
+                .then((r) => r.blob())
+                .catch((e) => {
+                    console.log(e);
+                });
             addOnUISdk.app.document.addImage(blob);
         }
         callWhenReady();
@@ -12,11 +16,22 @@ function add_image(url) {
 
 addOnUISdk.ready.then(async () => {
 
-    const route = 'https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/cocaine/PNG';
-    const createRectangleButton = document.getElementById("createRectangle");
-    createRectangleButton.addEventListener("click", async event => {
-        add_image(route);
+    const getStructureBySMILES = document.getElementById("displayCompoundBySmiles");
+
+    const getStructureByName = document.getElementById("displayCompoundByName")
+
+    const smilesInput = document.getElementById("smilesInput");
+    const nameInput = document.getElementById("nameInput");
+
+    getStructureBySMILES.addEventListener("click", async event => {
+        const smiles = encodeURIComponent(smilesInput.value.trim())
+        add_image(`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/${smiles}/PNG`);
     });
 
-    createRectangleButton.disabled = false;
+    getStructureByName.addEventListener("click", async event => {
+        const name = encodeURIComponent(nameInput.value.trim())
+        add_image(`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${name}/PNG`);
+    });
+
+    getStructureBySMILES.disabled = false;
 });
