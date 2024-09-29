@@ -13,6 +13,7 @@
             margin: 24px;
             display: flex;
             flex-direction: column;
+            padding-bottom: 3rem;
         }
 
         button {
@@ -34,14 +35,71 @@
             background-color: rgb(64, 70, 202);
             cursor: pointer;
         }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+
+        .cock {
+            padding-bottom: 5rem;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <div class="cock">
+
+
+            <table>
+                <tr>
+                    <th>Function</th>
+                    <th>Symbol</th>
+
+                </tr>
+                <tr>
+                    <td>single bond*</td>
+                    <td>-</td>
+
+                </tr>
+                <tr>
+                    <td>double bond</td>
+                    <td>=</td>
+
+                </tr>
+                <tr>
+                    <td>triple bond</td>
+                    <td>#</td>
+
+                </tr>
+                <tr>
+                    <td>aromatic carbon</td>
+                    <td>c (lower case c)</td>
+
+                </tr>
+                <tr>
+                    <td>aromatic bond*</td>
+                    <td>:</td>
+
+                </tr>
+                <tr>
+                    <td>Positive charge</td>
+                    <td>[C+]</td>
+                </tr>
+                <tr>
+                    <td>Negative charge</td>
+                    <td>[C-]</td>
+                </tr>
+            </table>
+        </div>
         <input type="text" placeholder="By SMILES" id="smilesInput" class="input">
         <br>
         <button id="displayCompoundBySmiles">Generate</button>
+        <br>
         <br>
         <input type="text" placeholder="By Name" id="nameInput" class="input">
         <br>
